@@ -21,7 +21,22 @@ public class GradesException extends GeneralExeption{
 		setType(type);
 		setLocation(location);
 	}
+	public static GradesException buildUserException(String userMessage) {
+		return new GradesException(userMessage,userMessage,null,ExeptionType.BUSINESS, null);
+		
+	}
+	public static GradesException buildTechnicalException(String technicalMessage) {
+		return new GradesException(userMessage,userMessage,null,ExeptionType.TECHNICAL, null);
+	}
 	
+	public static GradesException buildTechnicalException(String userMessage, String tecnicalMessage, Exception rootExeption, ExeptionType type,
+			ExceptionLocation location) {
+		return new GradesException(null,tecnicalMessage,rootExeption,ExeptionType.TECHNICAL, location);
+	}
+	public static GradesException buildUserAllException(String userMessage, String tecnicalMessage, Exception rootExeption, ExeptionType type,
+			ExceptionLocation location) {
+		return new GradesException(null,tecnicalMessage,rootExeption,type, location);
+	}
 	public static GradesException build(String userMessage) {
 		return new GradesException(userMessage, userMessage, null, null, null);
 	}
@@ -34,6 +49,9 @@ public class GradesException extends GeneralExeption{
 	}
 	public static GradesException build(String userMessage, String tecnicalMessage, Exception rootExeption) {
 		return new GradesException(userMessage, tecnicalMessage,rootExeption, null, null);
+	}
+	public static GradesException buildTechnicalDataException(String technicalException) {
+		return GradesException(null, technicalException, null, ExeptionType.TECHNICAL, ExeptionLocation.DATA)
 	}
 	
 	
